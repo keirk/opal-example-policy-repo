@@ -1,4 +1,4 @@
-package workiro.tags
+package workiro.tags.create
 
 import future.keywords
 
@@ -16,9 +16,6 @@ can_create {
 	action_is_create
 	tag_is_private
 }
-
-
-
 
 tag_is_private if input.isPrivate
 
