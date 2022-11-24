@@ -2,7 +2,7 @@ package workiro.tags.create
 
 import future.keywords
 
-default allow := false
+allow := false
 
 allow if can_create
 
