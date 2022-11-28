@@ -2,13 +2,23 @@ package workiro.tags.create
 
 import future.keywords
 
-default hello = false
+default query := []
 
-hello {
-    response := http.send({
-        "method" : "POST",
-        "url": "https://httpbin.org/post",
-		"body": "{\"threadIds\":[1,2,3,4,5]}"
-    })
-    response.json.threadIds
+query = data.tags[_] {
+	user_is_owner
+	data.tags[_].account == input.account
+	data.tags[_].isPrivate == input.isPrivate
+}
+
+query = data.tags[_] {
+	data.tags[_].user == input.user
+	data.tags[_].account == input.account
+	data.tags[_].isPrivate == input.isPrivate
+}
+
+user_is_owner if {
+	some account in data.accounts
+	some user in account.users
+	user.userId == input.user
+	user.owner
 }
